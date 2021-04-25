@@ -11,7 +11,14 @@ const Container = styled.div`
 `;
 
 class App extends React.Component{
-  state = initialData;
+  constructor(props){
+    super(props)
+    this.state = initialData;
+  }
+
+
+  
+  
 
   onDragStart = () =>{
     /*
@@ -27,6 +34,20 @@ class App extends React.Component{
     document.body.style.backgroundColor = `rgba(153,141,217, ${opacity})`
     */
   }
+
+  insertOnClick = () =>{
+    alert("click")
+  }
+
+  updateOnClick = () =>{
+    alert("update")
+  }
+
+
+  deleteOnClick = () =>{
+    alert("delete")
+  }
+
 
   onDragEnd = result =>{
     const {destination, source, draggableId} = result;
@@ -46,7 +67,7 @@ class App extends React.Component{
     }
 
     if(destination.droppableId === source.droppableId && destination.index === source.index){
-      console.log("hit0")
+
       return;
     }
 
@@ -118,12 +139,53 @@ class App extends React.Component{
       >
         <Container>
           {this.state.columnOrder.map((columnId)=>{
+            //console.log("columnId",columnId)
+            let theIdNum = columnId.match(/\d/g);
+            theIdNum = parseInt(theIdNum.join(""));
+            
+            console.log("theIdNum",theIdNum);
             const column = this.state.columns[columnId];
-            const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+            //console.log("column",column)
 
-            return <Column key={column.id} column={column} tasks={tasks}/>
+            if(theIdNum < 4){
+              const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+              return <Column key={column.id} column={column} tasks={tasks}/>
+            }else{
+              return;
+            }
+            
           })}
         </Container>
+
+
+        <Container>
+        {this.state.columnOrder.map((columnId)=>{
+            //console.log("columnId",columnId)
+            let theIdNum = columnId.match(/\d/g);
+            theIdNum = parseInt(theIdNum.join(""));
+            
+            console.log("theIdNum",theIdNum);
+            const column = this.state.columns[columnId];
+            //console.log("column",column)
+
+            if(theIdNum > 3){
+              const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+              return <Column key={column.id} column={column} tasks={tasks}/>
+            }else{
+              return;
+            }
+            
+          })}
+
+        </Container>
+
+        <Container>
+        <button onClick={this.insertOnClick}>Insert new course</button>
+        <button onClick={this.updateOnClick}>Update a course</button>
+        <button onClick={this.deleteOnClick}>Delete a course</button>
+        </Container>
+
+
         
       </DragDropContext>
       

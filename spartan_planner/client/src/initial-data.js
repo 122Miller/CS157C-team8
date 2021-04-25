@@ -8,22 +8,42 @@ const initialData ={
     columns:{
         'column-1':{
            id: 'column-1',
-           title:'Upper Division Course',
+           title:'Requirements',
            taskIds:['task-1','task-2','task-3','task-4'] 
         },
         'column-2':{
             id: 'column-2',
-            title:'Fall Semester',
+            title:'Elective Course',
             taskIds:[] 
          },
          'column-3':{
             id: 'column-3',
+            title:'Deep-Course',
+            taskIds:[] 
+         },
+         'column-4':{
+            id: 'column-4',
+            title:'Fall Semester',
+            taskIds:[] 
+         },
+         'column-5':{
+            id: 'column-5',
+            title:'Spring Semester',
+            taskIds:[] 
+         },
+         'column-6':{
+            id: 'column-6',
+            title:'Fall Semester',
+            taskIds:[] 
+         },
+         'column-7':{
+            id: 'column-7',
             title:'Spring Semester',
             taskIds:[] 
          },
     },
     //Facilitate reordering of the columns
-    columnOrder:['column-1','column-2','column-3'],
+    columnOrder:['column-1','column-2','column-3','column-4','column-5','column-6','column-7'],
 };
 
 export default initialData;
