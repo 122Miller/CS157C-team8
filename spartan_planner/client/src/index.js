@@ -40,20 +40,24 @@ class App extends React.Component{
     
 
     if(!destination){
+      
       return;
+      
     }
 
-    if(destination.draggableId === source.draggableId && destination.index === source.index){
-
+    if(destination.droppableId === source.droppableId && destination.index === source.index){
+      console.log("hit0")
       return;
     }
 
     const start = this.state.columns[source.droppableId];
     const finish = this.state.columns[destination.droppableId];
+
     console.log("start",start)
     console.log("finish", finish)
-
+    
     if(start === finish){
+   
     const newTaskIds = Array.from(start.taskIds);
     newTaskIds.splice(source.index,1);
     newTaskIds.splice(destination.index,0,draggableId);
@@ -77,15 +81,16 @@ class App extends React.Component{
 
 
     // Moving from one list to another
+    console.log("hit")
     const startTaskIds = Array.from(start.taskIds);
     startTaskIds.splice(source.index, 1);
-    const newStart ={
+    const newStart = {
       ...start,
       taskIds: startTaskIds
     }
 
     const finishTaskIds = Array.from(finish.taskIds);
-    finishTaskIds.splice(destination.index,0,draggableId); //insert
+    finishTaskIds.splice(destination.index, 0, draggableId); //insert
     const newFinish = {
       ...finish,
       taskIds:finishTaskIds
