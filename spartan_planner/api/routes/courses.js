@@ -18,27 +18,22 @@ router.get('/', async (req, res) => {
 });
 
 /**
- * Get all courses that are belong to category `deep-course`
+ * Get a specific course with a given course_name
+ * Ex: /course/CS146
  */
-router.get('/deepCourses', async (req, res) => {
-  const deeps = await Course.find({ category: 'deep-course' }).select('-_id -__v');
-  res.send(deeps);
+router.get('/:course', async (req, res) => {
+  const course = await Course.find({ course: req.params.course });
+  if (!course) return res.status(404).send('Course not found');
+  res.send(course);
 });
 
 /**
- * Get all courses that are belong to category `requirement`
+ * Get all courses based on given category
+ * Ex: /course/category/deep-course
  */
-router.get('/requirements', async (req, res) => {
-  const requirements = await Course.find({ category: 'requirement' }).select('-_id -__v');
-  res.send(requirements);
-});
-
-/**
- * Get all courses that are belong to category `elective`
- */
-router.get('/electives', async (req, res) => {
-  const electives = await Course.find({ category: 'elective' }).select('-_id -__v');
-  res.send(electives);
+router.get('/category/:category', async (req, res) => {
+  const courses = await Course.find({ category: req.params.category });
+  res.send(courses);
 });
 
 router.post('/', async (req, res) => {
