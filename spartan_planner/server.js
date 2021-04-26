@@ -1,13 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); //helps avoid CORS issues 
+const cors = require('cors'); //helps avoid CORS issues
 
 const app = express();
 const mongoose = require('mongoose');
 const courses = require('./api/routes/courses');
-const electives = require('./api/routes/electives');
-const requirements = require('./api/routes/requirements');
-const deepCourses = require('./api/routes/deepCourses');
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -20,28 +17,23 @@ app.get('/api/hello', (req, res) => {
 
 app.post('/api/world', (req, res) => {
   console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
+  res.send(`I received your POST request. This is what you sent me: ${req.body.post}`);
 });
 
-const URI2 = 'mongodb+srv://spartanplanner:planner2021@cluster0.1plei.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const URI =
+  'mongodb+srv://spartanplanner:planner2021@cluster0.1plei.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-  useCreateIndex: true
+  useCreateIndex: true,
 };
 
-mongoose.connect(URI2, options)
+mongoose
+  .connect(URI, options)
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
-
+  .catch((err) => console.error('Could not connect to MongoDB...', err));
 
 app.use('/api/courses', courses);
-app.use('/api/electives', electives);
-app.use('/api/requirements', requirements);
-app.use('/api/deepCourses', deepCourses);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
