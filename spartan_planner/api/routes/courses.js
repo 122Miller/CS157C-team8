@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   const requirements = _.filter(courses, { category: 'requirement' });
   const electives = _.filter(courses, { category: 'elective' });
 
-  const arr = [requirements, deeps, electives];
+  const arr = [requirements, electives, deeps];
 
   res.send(arr); // [requirements_collection, deepCourses_collection, electives_collection]
 });
