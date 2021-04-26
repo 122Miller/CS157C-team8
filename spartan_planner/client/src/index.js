@@ -147,7 +147,7 @@ class App extends React.Component{
             const column = this.state.columns[columnId];
             //console.log("column",column)
 
-            if(theIdNum < 4){
+            if(theIdNum <= 4){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
               return <Column key={column.id} column={column} tasks={tasks}/>
             }else{
@@ -168,7 +168,7 @@ class App extends React.Component{
             const column = this.state.columns[columnId];
             //console.log("column",column)
 
-            if(theIdNum > 3){
+            if(theIdNum > 4){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
               return <Column key={column.id} column={column} tasks={tasks}/>
             }else{
@@ -206,3 +206,20 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
+
+
+
+/**
+
+1. call an api /courses
+
+
+1st[] = requirments
+2nd[] = eletives
+3rd[] = Deep course
+
+
+[  [{....}] , [{....}] , [{....}]  ] 
+
+
+ */

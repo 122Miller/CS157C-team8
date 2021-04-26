@@ -4,6 +4,9 @@ const initialData ={
         'task-2':{id:'task-2', content:'CS151'},
         'task-3':{id:'task-3', content:'CS49J'},
         'task-4':{id:'task-4', content:'CS157C'},
+        'task-5':{id:'task-5', content:'AREA-R'},
+        'task-6':{id:'task-6', content:'AREA-C'},
+        'task-7':{id:'task-7', content:'AREA-V'},
     },
     columns:{
         'column-1':{
@@ -18,32 +21,38 @@ const initialData ={
          },
          'column-3':{
             id: 'column-3',
-            title:'Deep-Course',
-            taskIds:[] 
+            title:'Upper G.E. Course',
+            taskIds:['task-5','task-6','task-7'] 
          },
          'column-4':{
             id: 'column-4',
-            title:'Fall Semester',
+            title:'Deep-Course',
             taskIds:[] 
          },
          'column-5':{
             id: 'column-5',
-            title:'Spring Semester',
+            title:'Fall Semester',
             taskIds:[] 
          },
          'column-6':{
             id: 'column-6',
-            title:'Fall Semester',
+            title:'Spring Semester',
             taskIds:[] 
          },
          'column-7':{
             id: 'column-7',
+            title:'Fall Semester',
+            taskIds:[] 
+         },
+         'column-8':{
+            id: 'column-8',
             title:'Spring Semester',
             taskIds:[] 
          },
+       
     },
     //Facilitate reordering of the columns
-    columnOrder:['column-1','column-2','column-3','column-4','column-5','column-6','column-7'],
+    columnOrder:['column-1','column-2','column-3','column-4','column-5','column-6','column-7','column-8'],
 };
 
 export default initialData;
