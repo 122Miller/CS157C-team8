@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import initialData from './initial-data'
 import Column from './column'
+import InsertModal from './InsertModal'
 import styled from 'styled-components'
 import {DragDropContext} from 'react-beautiful-dnd'
+import axios from 'axios'
+
 
 
 const Container = styled.div`
@@ -14,6 +17,40 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = initialData;
+  }
+
+
+  componentDidMount(){
+    console.log("componentDidMount")
+    console.log("state",this.state)
+    const newState  = {
+      ...this.state,
+      insertIsClicked : false,
+      updateIsClicked : false,
+      deleteIsClicked : false,
+    }
+    
+    this.setState(newState,()=>{
+      console.log("updated State",this.state )
+    })
+
+   
+    
+    axios.get('http://localhost:5000/api/courses')
+    .then(function (response) {
+      // handle success
+      console.log("courses api: ", response.data);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+
+
+    console.log(this.state)
   }
 
 
@@ -36,7 +73,17 @@ class App extends React.Component{
   }
 
   insertOnClick = () =>{
-    alert("click")
+    console.log("insert is clicked")
+    const newState ={
+      ...this.state,
+      insertIsClicked:true
+    }
+    this.setState(newState,()=>{
+      console.log("insertClicked Update ", this.state)
+    })
+
+
+    
   }
 
   updateOnClick = () =>{
@@ -132,6 +179,7 @@ class App extends React.Component{
 
   render(){
     return (
+      <div>
       <DragDropContext 
         onDragStart={this.onDragStart}
         onDragUpdate={this.onDragUpdate}
@@ -180,15 +228,18 @@ class App extends React.Component{
         </Container>
 
         <Container>
-        <button onClick={this.insertOnClick}>Insert new course</button>
+        <InsertModal></InsertModal>
         <button onClick={this.updateOnClick}>Update a course</button>
         <button onClick={this.deleteOnClick}>Delete a course</button>
         </Container>
-
-
-        
-      </DragDropContext>
       
+      </DragDropContext>
+
+     
+      </div>
+      
+
+    
     )
 
   }
