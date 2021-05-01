@@ -4,11 +4,12 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
  
-export default  class InsertModal extends React.Component{ 
+export default  class UpdateModal extends React.Component{ 
     constructor(props){
         super(props)
         this.state ={
-            course: "",
+            newCourse: "",
+            oldCourse: "",
             prerequisite:[],
             title:"",
             dept_name:"",
@@ -18,9 +19,15 @@ export default  class InsertModal extends React.Component{
         }
     }
 
-    handleCourseNameChange = (event) =>{
+    handleOldCourseNameChange = (event) =>{
         this.setState({
-            course: event.target.value
+            oldCourse: event.target.value
+        })
+    }
+
+    handleNewCourseNameChange = (event) =>{
+        this.setState({
+            newCourse: event.target.value
         })
     }
 
@@ -62,9 +69,9 @@ export default  class InsertModal extends React.Component{
 
     onSubmitClick = (event) =>{
         console.log("course: ", this.state)
-        const courseName = this.state.course
-        axios.post("http://localhost:5000/api/courses",{
-            course: this.state.course,
+        const OldCourseName = this.state.oldCourse
+        axios.put(`http://localhost:5000/api/courses/${OldCourseName}`,{
+            course: this.state.newCourse,
             prerequisite:this.state.prerequisite,
             title:this.state.title,
             dept_name:this.state.dept_name,
@@ -74,9 +81,7 @@ export default  class InsertModal extends React.Component{
         })
         .then(function(response){
             console.log(response)
-            alert(`${courseName} is inserted.`)
-            //event.preventDefault()
-            
+            alert(`${OldCourseName} is updated.`)
         })
         .catch(function(error){
             alert("Something went wrong")
@@ -91,7 +96,7 @@ export default  class InsertModal extends React.Component{
     render(){
         return(
             <Popup
-            trigger={<button className="button"> Insert a new Course </button>}
+            trigger={<button className="button"> Update a current course </button>}
             modal
             nested
           >
@@ -100,12 +105,16 @@ export default  class InsertModal extends React.Component{
                 <button className="close" onClick={close}>
                   &times;
                 </button>
-                <div className="header"> Insert a new Course </div>
+                <div className="header"> Update a current course </div>
                 <div className="content">
                     <form>
                         <div>
-                            <label>Course Name</label>
-                            <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
+                            <label>Course name you want to update</label>
+                            <input type="text" value={this.state.oldCourse} onChange={this.handleOldCourseNameChange}/>
+                        </div>
+                        <div>
+                            <label>New Course Name</label>
+                            <input type="text" value={this.state.newCourse} onChange={this.handleNewCourseNameChange}/>
                         </div>
                         <div>
                             <label>Title</label>
@@ -137,7 +146,7 @@ export default  class InsertModal extends React.Component{
                             </select>
                         </div>
             
-                        <button className="button" onClick={this.onSubmitClick}> Submit </button>
+                        <button className="button" onClick={this.onSubmitClick}> Update </button>
                         <button
                             className="button"
                             onClick={() => {

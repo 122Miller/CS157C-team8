@@ -3,6 +3,8 @@ import ReactDOM, { render } from 'react-dom';
 import initialData from './initial-data'
 import Column from './column'
 import InsertModal from './InsertModal'
+import DeleteModal from './DeleteModal'
+import UpdateModal from './UpdateModal'
 import styled from 'styled-components'
 import {DragDropContext} from 'react-beautiful-dnd'
 import axios from 'axios'
@@ -229,8 +231,9 @@ class App extends React.Component{
 
         <Container>
         <InsertModal></InsertModal>
-        <button onClick={this.updateOnClick}>Update a course</button>
-        <button onClick={this.deleteOnClick}>Delete a course</button>
+        <DeleteModal></DeleteModal>
+        <UpdateModal></UpdateModal>
+       
         </Container>
       
       </DragDropContext>

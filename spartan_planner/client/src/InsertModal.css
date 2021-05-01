@@ -1,5 +1,5 @@
 .modal {
-  font-size: 12px;
+  font-size: 20px;
 }
 .modal > .header {
   width: 100%;
@@ -10,11 +10,11 @@
 }
 .modal > .content {
   width: 100%;
-  padding: 10px 5px;
+  padding: 20px 10px;
 }
 .modal > .actions {
   width: 100%;
-  padding: 10px 5px;
+  padding: 20px 10px;
   margin: auto;
   text-align: center;
 }
@@ -22,7 +22,7 @@
   cursor: pointer;
   position: absolute;
   display: block;
-  padding: 2px 5px;
+  padding: 4px 10px;
   line-height: 20px;
   right: -10px;
   top: -10px;
