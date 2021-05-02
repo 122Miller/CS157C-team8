@@ -21,7 +21,7 @@ app.post('/api/world', (req, res) => {
 });
 
 const URI =
-  'mongodb+srv://spartanplanner:planner2021@cluster0.1plei.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+  'mongodb+srv://spartanplanner:planner2021@cluster0.1plei.mongodb.net/sjsu_database?retryWrites=true&w=majority';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
