@@ -19,71 +19,110 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = initialData;
+    //console.log(initialData)
   }
 
 
   componentDidMount(){
     //console.log("componentDidMount")
-    console.log("old state",this.state)
+    //console.log("old state",initialData)
     const newState  = {
       ...this.state,
     }
-    
-    this.setState(newState,()=>{
-      //console.log("updated State",this.state )
-    })
+
 
     let requirementsCourses = null
-    let courseNames = []  
+    let requiredCourseNames = []  
+
+    let selectiveCourses = null
+    let selectiveCourseNames = []
+
+    let deepCourses = null
+    let deepCourseNames = []
     
     axios.get('http://localhost:5000/api/courses')
     .then((response) => {
       // handle success
-      //console.log("courses api: ", response.data);
+      console.log("courses api: ", response.data);
       //console.log("task",newState.tasks)
       
-      response.data[0].map((item)=>{
+      for(var i=0; i < 3; i++){
+        response.data[i].map((item)=>{
         //console.log(item.course)
         const course = item.course
-        courseNames.push(course)
+        
         const obj = new Object()
         obj.id = item.course
-        obj.content = item.course
-
-        
-
-        
-        
-        requirementsCourses ={
+        obj.courseName = item.course
+        obj.title = item.title
+        obj.category = item.category
+        obj.dept_name = item.dept_name
+        obj.description = item.description
+        obj.credit = item.credit
+        obj.prerequisite = item.prerequisite
+        //obj.title = item.title
+        if(i === 0){
+          requiredCourseNames.push(course)
+          requirementsCourses ={
           ...requirementsCourses,
           [course]:obj
-          
+          }
+        }else if(i === 1){
+          deepCourseNames.push(course)
+          deepCourses ={
+          ...deepCourses,
+          [course]:obj
+          }
+        }else{
+          selectiveCourseNames.push(course)
+          selectiveCourses ={
+          ...selectiveCourses,
+          [course]:obj
+          }
         }
-        //console.log(requirementsCourses)
+     
+        })
+      }
 
-
-      })
       //console.log("requirmentObj: ", requirementsCourses)
       
       //newState.tasks = Object.assign({},requirementsCourses)
 
 
-      const columnObj = {
+      const columnObj1 = {
         "id":"column-1",
         "title":"Requirements",
-        "tasksIds" : courseNames
+        "taskIds" : requiredCourseNames
       }
-      newState.columns['column-1'] = columnObj
-      newState.tasks = requirementsCourses
 
-      //console.log("columns",newState.columns['column-1'])
-      
-      console.log("newState",newState)
+      const columnObj2 = {
+        "id":"column-2",
+        "title":"Deep Course",
+        "taskIds" : deepCourseNames
+      }
 
-      
-      /* this.setState(newState,()=>{
+      const columnObj3 = {
+        "id":"column-3",
+        "title":"Selectives",
+        "taskIds" : selectiveCourseNames
+      }
+      newState.columns['column-1'] = columnObj1
+      newState.columns['column-2'] = columnObj2
+      newState.columns['column-3'] = columnObj3
+
+      const allCourses ={
+        ...requirementsCourses,
+        ...selectiveCourses,
+        ...deepCourses
+      }
+
+      console.log(allCourses)
+      console.log(requirementsCourses)
+      newState.tasks = allCourses
+
+      this.setState(newState,()=>{
         console.log("update complete", this.state)
-      }) */
+      })
       
     })
     .catch(function (error) {

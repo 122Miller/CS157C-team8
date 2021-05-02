@@ -1,13 +1,13 @@
 const initialData ={
     tasks:{
        
-        'task-1':{id:'task-1', content:'CS146'},
-        'task-2':{id:'task-2', content:'CS151'},
-        'task-3':{id:'task-3', content:'CS49J'},
-        'task-4':{id:'task-4', content:'CS157C'},
-        'task-5':{id:'task-5', content:'AREA-R'},
-        'task-6':{id:'task-6', content:'AREA-C'},
-        'task-7':{id:'task-7', content:'AREA-V'},
+        'task-1':{id:'task-1', courseName:'CS146'},
+        'task-2':{id:'task-2', courseName:'CS151'},
+        'task-3':{id:'task-3', courseName:'CS49J'},
+        'task-4':{id:'task-4', courseName:'CS157C'},
+        'task-5':{id:'task-5', courseName:'AREA-R'},
+        'task-6':{id:'task-6', courseName:'AREA-C'},
+        'task-7':{id:'task-7', courseName:'AREA-V'},
     },
     columns:{
         'column-1':{
@@ -22,12 +22,12 @@ const initialData ={
          },
          'column-3':{
             id: 'column-3',
-            title:'Upper G.E. Course',
+            title:'Deep-Course',
             taskIds:[] 
          },
          'column-4':{
             id: 'column-4',
-            title:'Deep-Course',
+            title:'Upper G.E. Course',
             taskIds:[] 
          },
          'column-5':{
