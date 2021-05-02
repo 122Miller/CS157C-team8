@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
+import InsertModal from './InsertModal'
 
 
 const Container = styled.div`
@@ -23,26 +24,43 @@ const Handle = styled.div`
 `
 
 
-
 export default class Task extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = props
+        //console.log("from task class",props)
+        //this.onClickHandler = this.onClickHandler.bind(this)
+    
+    }
+
+    onClickHandler = () =>{
+        console.log("from task class",this.state)
+        this.state.setSelectedCourse(this.state.task)
+        //alert(`Hello`)
+    }
+
+    
     render(){
         
         return (
         <Draggable 
             draggableId={this.props.task.id} 
             index={this.props.index}
-            
         >
             {(provided, snapshot)=>(
-                <Container
+                <div onClick = {this.onClickHandler}
+                >
+                    <Container
                     {...provided.draggableProps}
                    
                     ref={provided.innerRef}
                     isDragging={snapshot.isDragging}
-                >
+                    >
                     <Handle  {...provided.dragHandleProps}/>
                     {this.props.task.courseName}
-                </Container>
+                    </Container>
+                </div>
+                
             )}
             
         </Draggable>
