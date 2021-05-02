@@ -24,6 +24,10 @@ const courseSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  url: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     required: true,
@@ -42,6 +46,7 @@ function validateCourse(course) {
     dept_name: Joi.string().min(2).required(),
     credit: Joi.number().required(),
     description: Joi.string().required(),
+    url: Joi.string().required(),
     category: Joi.string().required().valid('deep-course', 'elective', 'requirement'),
     prerequisite: Joi.array().items(Joi.string()).required(),
   });

@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     dept_name: req.body.dept_name,
     credit: req.body.credit,
+    url: req.body.url,
     category: req.body.category,
     description: req.body.description,
     prerequisite: req.body.prerequisite,
