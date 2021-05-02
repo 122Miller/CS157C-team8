@@ -23,25 +23,68 @@ class App extends React.Component{
 
 
   componentDidMount(){
-    console.log("componentDidMount")
-    console.log("state",this.state)
+    //console.log("componentDidMount")
+    console.log("old state",this.state)
     const newState  = {
       ...this.state,
-      insertIsClicked : false,
-      updateIsClicked : false,
-      deleteIsClicked : false,
     }
     
     this.setState(newState,()=>{
-      console.log("updated State",this.state )
+      //console.log("updated State",this.state )
     })
 
-   
+    let requirementsCourses = null
+    let courseNames = []  
     
     axios.get('http://localhost:5000/api/courses')
-    .then(function (response) {
+    .then((response) => {
       // handle success
-      console.log("courses api: ", response.data);
+      //console.log("courses api: ", response.data);
+      //console.log("task",newState.tasks)
+      
+      response.data[0].map((item)=>{
+        //console.log(item.course)
+        const course = item.course
+        courseNames.push(course)
+        const obj = new Object()
+        obj.id = item.course
+        obj.content = item.course
+
+        
+
+        
+        
+        requirementsCourses ={
+          ...requirementsCourses,
+          [course]:obj
+          
+        }
+        //console.log(requirementsCourses)
+
+
+      })
+      //console.log("requirmentObj: ", requirementsCourses)
+      
+      //newState.tasks = Object.assign({},requirementsCourses)
+
+
+      const columnObj = {
+        "id":"column-1",
+        "title":"Requirements",
+        "tasksIds" : courseNames
+      }
+      newState.columns['column-1'] = columnObj
+      newState.tasks = requirementsCourses
+
+      //console.log("columns",newState.columns['column-1'])
+      
+      console.log("newState",newState)
+
+      
+      /* this.setState(newState,()=>{
+        console.log("update complete", this.state)
+      }) */
+      
     })
     .catch(function (error) {
       // handle error
@@ -51,8 +94,10 @@ class App extends React.Component{
       // always executed
     });
 
+    
 
-    console.log(this.state)
+    
+        
   }
 
 
@@ -74,28 +119,6 @@ class App extends React.Component{
     */
   }
 
-  insertOnClick = () =>{
-    console.log("insert is clicked")
-    const newState ={
-      ...this.state,
-      insertIsClicked:true
-    }
-    this.setState(newState,()=>{
-      console.log("insertClicked Update ", this.state)
-    })
-
-
-    
-  }
-
-  updateOnClick = () =>{
-    alert("update")
-  }
-
-
-  deleteOnClick = () =>{
-    alert("delete")
-  }
 
 
   onDragEnd = result =>{
@@ -193,7 +216,7 @@ class App extends React.Component{
             let theIdNum = columnId.match(/\d/g);
             theIdNum = parseInt(theIdNum.join(""));
             
-            console.log("theIdNum",theIdNum);
+            //console.log("theIdNum",theIdNum);
             const column = this.state.columns[columnId];
             //console.log("column",column)
 
@@ -214,7 +237,7 @@ class App extends React.Component{
             let theIdNum = columnId.match(/\d/g);
             theIdNum = parseInt(theIdNum.join(""));
             
-            console.log("theIdNum",theIdNum);
+            //console.log("theIdNum",theIdNum);
             const column = this.state.columns[columnId];
             //console.log("column",column)
 

@@ -1,5 +1,6 @@
 const initialData ={
     tasks:{
+       
         'task-1':{id:'task-1', content:'CS146'},
         'task-2':{id:'task-2', content:'CS151'},
         'task-3':{id:'task-3', content:'CS49J'},
@@ -12,7 +13,7 @@ const initialData ={
         'column-1':{
            id: 'column-1',
            title:'Requirements',
-           taskIds:['task-1','task-2','task-3','task-4'] 
+           taskIds:[] 
         },
         'column-2':{
             id: 'column-2',
@@ -22,7 +23,7 @@ const initialData ={
          'column-3':{
             id: 'column-3',
             title:'Upper G.E. Course',
-            taskIds:['task-5','task-6','task-7'] 
+            taskIds:[] 
          },
          'column-4':{
             id: 'column-4',
