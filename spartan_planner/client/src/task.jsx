@@ -27,17 +27,12 @@ const Handle = styled.div`
 export default class Task extends React.Component{
     constructor(props){
         super(props)
-        this.state = props
+        //this.state = props
         //console.log("from task class",props)
         //this.onClickHandler = this.onClickHandler.bind(this)
     
     }
 
-    onClickHandler = () =>{
-        console.log("from task class",this.state)
-        this.state.setSelectedCourse(this.state.task)
-        //alert(`Hello`)
-    }
 
     
     render(){
@@ -48,19 +43,19 @@ export default class Task extends React.Component{
             index={this.props.index}
         >
             {(provided, snapshot)=>(
-                <div onClick = {this.onClickHandler}
+                
+            
+                <Container
+                {...provided.draggableProps}
+                
+                ref={provided.innerRef}
+                isDragging={snapshot.isDragging}
                 >
-                    <Container
-                    {...provided.draggableProps}
-                   
-                    ref={provided.innerRef}
-                    isDragging={snapshot.isDragging}
-                    >
-                    <Handle  {...provided.dragHandleProps}/>
-                    <InfoModal task={this.props.task}></InfoModal>
-                    
-                    </Container>
-                </div>
+                <Handle  {...provided.dragHandleProps}/>
+                <InfoModal task={this.props.task}></InfoModal>
+                
+                </Container>
+               
                 
             )}
             
