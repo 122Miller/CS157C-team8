@@ -76,15 +76,15 @@ class App extends React.Component{
           [course]:obj
           }
         }else if(i === 1){
-          deepCourseNames.push(course)
-          deepCourses ={
-          ...deepCourses,
-          [course]:obj
-          }
-        }else if(i === 2){
           selectiveCourseNames.push(course)
           selectiveCourses ={
           ...selectiveCourses,
+          [course]:obj
+          }
+        }else if(i === 2){
+          deepCourseNames.push(course)
+          deepCourses ={
+          ...deepCourses,
           [course]:obj
           }
         }else{
@@ -111,14 +111,14 @@ class App extends React.Component{
 
       const columnObj2 = {
         "id":"column-2",
-        "title":"Deep Course",
-        "taskIds" : deepCourseNames
+        "title":"Selectives",
+        "taskIds" : selectiveCourseNames
       }
 
       const columnObj3 = {
         "id":"column-3",
-        "title":"Selectives",
-        "taskIds" : selectiveCourseNames
+        "title":"Deep Course",
+        "taskIds" : deepCourseNames
       }
 
       const columnObj4 = {
