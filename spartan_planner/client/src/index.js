@@ -9,7 +9,7 @@ import InfoModal from './InfoModal'
 import styled from 'styled-components'
 import {DragDropContext} from 'react-beautiful-dnd'
 import axios from 'axios'
-
+import Title from './Title'
 
 
 const Container = styled.div`
@@ -351,6 +351,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
+      <Title />
       {this.state.showCourseModal? (<InfoModal selectedCourse = {this.state.selectedCourse}></InfoModal>):(null)}
       <DragDropContext 
         onDragStart={this.onDragStart}
@@ -358,6 +359,7 @@ class App extends React.Component{
         onDragEnd={this.onDragEnd}
       >
         <Container>
+
           {this.state.columnOrder.map((columnId)=>{
             //console.log("columnId",columnId)
             let theIdNum = columnId.match(/\d/g);
