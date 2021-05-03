@@ -28,6 +28,8 @@ class App extends React.Component{
     //console.log("old state",initialData)
     const newState  = {
       ...this.state,
+      showCourseModal: false,
+      selectedCourse: null,
     }
 
 
@@ -140,7 +142,30 @@ class App extends React.Component{
   }
 
 
+  setSelectedCourse = (course) =>{
+      const newState = {
+        ...this.state,
+        selectedCourse: course,
+        showCourseModal: true,
+      }
+
+      this.setState(newState, ()=>{
+        console.log("from setSelectedCourse func", this.state)
+      })
+  }
   
+  setNewState = (newState) =>{
+      this.setState(newState, ()=>{
+        console.log("from index", this.state)
+      })
+  }
+
+  toggleInfoModal = () =>{
+    const newState = {
+      ...this.state,
+      showCourseModal: !this.state.showCourseModal
+    }
+  }
   
 
   onDragStart = () =>{
@@ -162,8 +187,7 @@ class App extends React.Component{
 
   onDragEnd = result =>{
 
-    console.log("from onDragEnd", this.state)
-
+    console.log("from ondrag end", this.state)
 
     const {destination, source, draggableId} = result;
     console.log("result", result)
@@ -300,6 +324,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
+      {this.state.showCourseModal? (<InsertModal></InsertModal>):(null)}
       <DragDropContext 
         onDragStart={this.onDragStart}
         onDragUpdate={this.onDragUpdate}
@@ -317,7 +342,7 @@ class App extends React.Component{
 
             if(theIdNum <= 4){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-              return <Column key={column.id} column={column} tasks={tasks}/>
+              return <Column key={column.id} column={column} tasks={tasks} data={this.state} setNewState={this.setNewState} setSelectedCourse={this.setSelectedCourse} />
             }else{
               return;
             }

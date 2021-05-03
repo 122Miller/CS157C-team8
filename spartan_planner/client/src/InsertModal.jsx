@@ -15,12 +15,19 @@ export default  class InsertModal extends React.Component{
             credit:"",
             description: "",
             category:"requirement",
+            url:"",
         }
     }
 
     handleCourseNameChange = (event) =>{
         this.setState({
             course: event.target.value
+        })
+    }
+
+    handleUrlChange = (event) =>{
+        this.setState({
+            url: event.target.value
         })
     }
 
@@ -71,6 +78,7 @@ export default  class InsertModal extends React.Component{
             credit:this.state.credit,
             description: this.state.description,
             category:this.state.category,
+            url: this.state.url
         })
         .then(function(response){
             console.log(response)
@@ -121,6 +129,11 @@ export default  class InsertModal extends React.Component{
                         </div>
 
                         <div>
+                            <label>Url of the class</label>
+                            <input type="text" value={this.state.url} onChange={this.handleUrlChange}/>
+                        </div>
+
+                        <div>
                             <label>Department</label>
                             <input type="text" value={this.state.dept_name} onChange={this.handleDepartmentChange}/>
                         </div>
@@ -128,6 +141,8 @@ export default  class InsertModal extends React.Component{
                             <label>Credit</label>
                             <input type="text" value={this.state.credit} onChange={this.handleCreditChange}/>
                         </div>
+
+
 
                         <div>
                             <select  value={this.state.category} onChange={this.handleCategoryChange}>

@@ -26,6 +26,11 @@ const TaskList = styled.div`
 
 
 export default class Column extends React.Component{
+
+    constructor(props){
+        super(props)
+        console.log("from Column", props)
+    }
     render(){
         return(
             <Container>
@@ -41,7 +46,7 @@ export default class Column extends React.Component{
                         {...provided.droppableProps}
                         isDraggingOver={snapshot.isDraggingOver}
                     >
-                    {this.props.tasks.map((task, index) => <Task key={task.id} task={task} index={index} />
+                    {this.props.tasks.map((task, index) => <Task key={task.id} task={task} index={index}  setSelectedCourse={this.props.setSelectedCourse}/>
                     )}
                     {provided.placeholder}
                     </TaskList>
