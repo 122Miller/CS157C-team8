@@ -68,6 +68,12 @@ export default  class InsertModal extends React.Component{
     }
 
     onSubmitClick = (event) =>{
+        let input = prompt("Enter password to proceed:")
+        if(input !== "CS157C"){
+            alert("Wrong password")
+            return
+        }
+        
         console.log("course: ", this.state)
         const courseName = this.state.course
         axios.post("http://localhost:5000/api/courses",{

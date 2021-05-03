@@ -21,6 +21,11 @@ export default  class InsertModal extends React.Component{
 
 
     onDeleteClick = (event) =>{
+        let input = prompt("Enter password to proceed:")
+        if(input !== "CS157C"){
+            alert("Wrong password")
+            return
+        }
         const courseName =  this.state.course
         axios.delete(`http://localhost:5000/api/courses/${courseName}`)
         .then(function(response){

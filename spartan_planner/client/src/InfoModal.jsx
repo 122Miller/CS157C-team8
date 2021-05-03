@@ -27,11 +27,11 @@ export default  class InfoModal extends React.Component{
                 <button className="close" onClick={close}>
                   &times;
                 </button>
-                <div className="header"> Delete a Course </div>
+                <div className="header"> Course Information </div>
                 <div className="content">
                     <form onSubmit={this.onDeleteClick}>
                         <div>
-                            <label>Course Name: {this.props.task.id}</label>
+                            <label>Course: {this.props.task.id}</label>
                             <br/>
                             <br/>
                             <label>Title: {this.props.task.title} </label>
@@ -52,23 +52,12 @@ export default  class InfoModal extends React.Component{
                             <label>Credit: {this.props.task.credit} </label>
                             <br/>
                             <br/>
-                            <button><a href={this.props.task.url}>Url for more details</a> </button>
+                            <button><a href={this.props.task.url} target="_blank" rel="noopener noreferrer">Url for more details</a> </button>
                             <br/>
                 
                             <br/>
                         </div>
                         
-            
-            
-                        <button
-                            className="button"
-                            onClick={() => {
-                            console.log('modal closed ');
-                            close();
-                            }}
-                        >
-                            Close
-                        </button>
                     </form>
                 </div>        
               </div>

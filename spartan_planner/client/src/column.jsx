@@ -8,8 +8,6 @@ const Container = styled.div`
     border: 1px solid lightgray;
     border-radius:2px;
     width: 350px;
-
-
     display: flex;
     flex-direction: column
 `;
@@ -22,7 +20,7 @@ const TaskList = styled.div`
     transition: background-color 0.2 ease;
     background-color: ${props=> (props.isDraggingOver? 'skyblue': 'white')};
     overflow-y: scroll;
-    height:500px;
+    height:300px;
 `;
 
 
@@ -30,8 +28,9 @@ export default class Column extends React.Component{
 
     constructor(props){
         super(props)
-        console.log("from Column", props)
+        //console.log("from Column", props)
     }
+
     render(){
         return(
             <Container>
