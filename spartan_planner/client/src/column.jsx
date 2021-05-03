@@ -9,6 +9,7 @@ const Container = styled.div`
     border-radius:2px;
     width: 350px;
 
+
     display: flex;
     flex-direction: column
 `;
@@ -20,8 +21,8 @@ const TaskList = styled.div`
     padding: 8px;
     transition: background-color 0.2 ease;
     background-color: ${props=> (props.isDraggingOver? 'skyblue': 'white')};
-    flex-grow:1;
-    min-height:100px;
+    overflow-y: scroll;
+    height:500px;
 `;
 
 
