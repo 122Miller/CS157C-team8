@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Draggable} from 'react-beautiful-dnd'
-import InsertModal from './InsertModal'
+import InfoModal from './InfoModal'
 
 
 const Container = styled.div`
@@ -57,7 +57,8 @@ export default class Task extends React.Component{
                     isDragging={snapshot.isDragging}
                     >
                     <Handle  {...provided.dragHandleProps}/>
-                    {this.props.task.courseName}
+                    <InfoModal task={this.props.task}></InfoModal>
+                    
                     </Container>
                 </div>
                 

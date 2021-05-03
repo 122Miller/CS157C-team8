@@ -5,6 +5,7 @@ import Column from './column'
 import InsertModal from './InsertModal'
 import DeleteModal from './DeleteModal'
 import UpdateModal from './UpdateModal'
+import InfoModal from './InfoModal'
 import styled from 'styled-components'
 import {DragDropContext} from 'react-beautiful-dnd'
 import axios from 'axios'
@@ -272,7 +273,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
-      {this.state.showCourseModal? (<InsertModal></InsertModal>):(null)}
+      {this.state.showCourseModal? (<InfoModal selectedCourse = {this.state.selectedCourse}></InfoModal>):(null)}
       <DragDropContext 
         onDragStart={this.onDragStart}
         onDragUpdate={this.onDragUpdate}

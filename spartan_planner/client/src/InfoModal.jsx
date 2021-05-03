@@ -7,8 +7,8 @@ import './InsertModal.css'
 export default  class InfoModal extends React.Component{ 
     constructor(props){
         super(props)
-        this.state =props
-        console.log("from infoModal", this.state)
+        //this.state =props
+        console.log("from infoModal", props)
     }
 
 
@@ -18,7 +18,7 @@ export default  class InfoModal extends React.Component{
     render(){
         return(
             <Popup
-            trigger={<button className="button"> Delete a Course </button>}
+            trigger={<button className="button"> {this.props.task.id} </button>}
             modal
             nested
           >
@@ -31,8 +31,19 @@ export default  class InfoModal extends React.Component{
                 <div className="content">
                     <form onSubmit={this.onDeleteClick}>
                         <div>
-                            <label>Course Name</label>
-                            <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
+                            <label>Course Name: {this.props.task.id}</label>
+                            <br/>
+                            <label>Title: {this.props.task.title} </label>
+                            <br/>
+                            <label>Category: {this.props.task.category} </label>
+                            <br/>
+                            <label>Description: {this.props.task.description} </label>
+                            <br/>
+                            <label>Prerequisite: {this.props.task.prerequisite} </label>
+                            <br/>
+                            <label>Department: {this.props.task.dept_name} </label>
+                            <br/>
+                            <label>Credit: {this.props.task.credit} </label>
                         </div>
                         
             
