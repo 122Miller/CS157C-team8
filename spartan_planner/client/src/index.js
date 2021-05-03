@@ -161,7 +161,12 @@ class App extends React.Component{
 
 
   onDragEnd = result =>{
+
+    console.log("from onDragEnd", this.state)
+
+
     const {destination, source, draggableId} = result;
+    console.log("result", result)
     document.body.style.color = 'inherit'
     document.body.style.backgroundColor = 'inherit'
     console.log("destination",destination);
@@ -207,7 +212,11 @@ class App extends React.Component{
       }
     }
 
+
+
     this.setState(newState)
+
+
     return;
    }
 
@@ -237,6 +246,53 @@ class App extends React.Component{
         
       }
     }
+
+    const taskValues = Object.values(this.state.tasks)
+    const columnValues = Object.values(this.state.columns)
+
+    let course = null
+    taskValues.map( (item, index) =>{
+      if(item.id === draggableId){
+        console.log(index)
+        course = item
+        console.log(course.prerequisite)
+      }
+    })
+
+    let currentColumn = null
+    let currentColumnIndex = null
+    columnValues.map( (element, index) => {
+      if(element.id === finish.id){
+        currentColumn = element
+        currentColumnIndex = index
+      }
+    })
+
+    console.log("currentColumn", currentColumn)
+    console.log("currentColumnIndex", currentColumnIndex)
+
+    const takenClasses = []
+    var i;
+    for(i = 4; i < currentColumnIndex; i++){
+      columnValues[i].taskIds.forEach( task => takenClasses.push(task))
+    }
+    console.log("takenClasses", takenClasses)
+
+    for(i = 0; i < course.prerequisite.length; i++){
+      if(takenClasses.includes(course.prerequisite[i])){
+        console.log("satisfied")
+      }
+      else{
+        alert(`prereq not satisfied ${course.prerequisite[i]}` )
+        return;
+      }
+    }
+
+
+    console.log("After onDragEnd", newState)
+    console.log("After OnDragEnd source index", source.index)
+    console.log("After OnDragEnd destination index", destination.index)
+
 
     this.setState(newState)
   }
