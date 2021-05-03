@@ -29,7 +29,7 @@ export default class Column extends React.Component{
 
     constructor(props){
         super(props)
-        //console.log("from Column", props)
+        console.log("from Column", props)
     }
     render(){
         return(

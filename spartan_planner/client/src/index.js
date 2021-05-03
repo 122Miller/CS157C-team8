@@ -42,6 +42,10 @@ class App extends React.Component{
 
     let deepCourses = null
     let deepCourseNames = []
+
+    let GECourses = null
+    let GECourseNames = []
+
     
     axios.get('http://localhost:5000/api/courses')
     .then((response) => {
@@ -49,7 +53,7 @@ class App extends React.Component{
       console.log("courses api: ", response.data);
       //console.log("task",newState.tasks)
       
-      for(var i=0; i < 3; i++){
+      for(var i=0; i < response.data.length; i++){
         response.data[i].map((item)=>{
         //console.log(item.course)
         const course = item.course
@@ -63,6 +67,7 @@ class App extends React.Component{
         obj.description = item.description
         obj.credit = item.credit
         obj.prerequisite = item.prerequisite
+        obj.url = item.url
         //obj.title = item.title
         if(i === 0){
           requiredCourseNames.push(course)
@@ -76,10 +81,16 @@ class App extends React.Component{
           ...deepCourses,
           [course]:obj
           }
-        }else{
+        }else if(i === 2){
           selectiveCourseNames.push(course)
           selectiveCourses ={
           ...selectiveCourses,
+          [course]:obj
+          }
+        }else{
+          GECourseNames.push(course)
+          GECourses ={
+          ...GECourses,
           [course]:obj
           }
         }
@@ -109,14 +120,29 @@ class App extends React.Component{
         "title":"Selectives",
         "taskIds" : selectiveCourseNames
       }
+
+      const columnObj4 = {
+        "id":"column-4",
+        "title":"Upper Division G.E.",
+        "taskIds" : GECourseNames
+      }
+
+      
+
+
       newState.columns['column-1'] = columnObj1
       newState.columns['column-2'] = columnObj2
       newState.columns['column-3'] = columnObj3
 
+      console.log("col 4", columnObj4)
+      console.log("col 3", columnObj3)
+      newState.columns['column-4'] = columnObj4
+
       const allCourses ={
         ...requirementsCourses,
         ...selectiveCourses,
-        ...deepCourses
+        ...deepCourses,
+        ...GECourses
       }
 
       console.log(allCourses)
