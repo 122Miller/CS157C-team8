@@ -31,7 +31,7 @@ const courseSchema = mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['deep-course', 'elective', 'requirement'],
+    enum: ['deep-course', 'elective', 'requirement', 'GE'],
   },
   prerequisite: {
     type: [String],
@@ -47,7 +47,7 @@ function validateCourse(course) {
     credit: Joi.number().required(),
     description: Joi.string().required(),
     url: Joi.string().required(),
-    category: Joi.string().required().valid('deep-course', 'elective', 'requirement'),
+    category: Joi.string().required().valid('deep-course', 'elective', 'requirement', 'GE'),
     prerequisite: Joi.array().items(Joi.string()).required(),
   });
   return schema.validate(course);
