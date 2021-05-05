@@ -11,6 +11,8 @@ import {DragDropContext} from 'react-beautiful-dnd'
 import axios from 'axios'
 import Title from './Title'
 
+import './index.css'
+
 
 const Container = styled.div`
   display: flex
@@ -350,15 +352,15 @@ class App extends React.Component{
 
   render(){
     return (
-      <div>
-      <Title />
+      <div className = "grid-container" >
+      <div className="title-div"> <Title/> </div>
       {this.state.showCourseModal? (<InfoModal selectedCourse = {this.state.selectedCourse}></InfoModal>):(null)}
       <DragDropContext 
         onDragStart={this.onDragStart}
         onDragUpdate={this.onDragUpdate}
         onDragEnd={this.onDragEnd}
       >
-        <Container>
+        <Container className= "course-containers1">
 
           {this.state.columnOrder.map((columnId)=>{
             //console.log("columnId",columnId)
@@ -369,9 +371,9 @@ class App extends React.Component{
             const column = this.state.columns[columnId];
             //console.log("column",column)
 
-            if(theIdNum <= 4){
+            if(theIdNum <=2){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-              return <Column key={column.id} column={column} tasks={tasks} data={this.state} setNewState={this.setNewState} setSelectedCourse={this.setSelectedCourse} />
+              return <Column className="course-col" key={column.id} column={column} tasks={tasks} data={this.state} setNewState={this.setNewState} setSelectedCourse={this.setSelectedCourse} />
             }else{
               return;
             }
@@ -379,8 +381,28 @@ class App extends React.Component{
           })}
         </Container>
 
+        <Container className= "course-containers2">
 
-        <Container>
+          {this.state.columnOrder.map((columnId)=>{
+            //console.log("columnId",columnId)
+            let theIdNum = columnId.match(/\d/g);
+            theIdNum = parseInt(theIdNum.join(""));
+            
+            //console.log("theIdNum",theIdNum);
+            const column = this.state.columns[columnId];
+            //console.log("column",column)
+
+            if(theIdNum <= 4 && theIdNum >2){
+              const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+              return <Column className="course-col" key={column.id} column={column} tasks={tasks} data={this.state} setNewState={this.setNewState} setSelectedCourse={this.setSelectedCourse} />
+            }else{
+              return;
+            }
+            
+          })}
+        </Container>
+
+        <Container className="semester-containers1">
         {this.state.columnOrder.map((columnId)=>{
             //console.log("columnId",columnId)
             let theIdNum = columnId.match(/\d/g);
@@ -390,9 +412,9 @@ class App extends React.Component{
             const column = this.state.columns[columnId];
             //console.log("column",column)
 
-            if(theIdNum > 4){
+            if(theIdNum > 4 && theIdNum <=6){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-              return <Column key={column.id} column={column} tasks={tasks}/>
+              return <Column  key={column.id} column={column} tasks={tasks}/>
             }else{
               return;
             }
@@ -401,14 +423,43 @@ class App extends React.Component{
 
         </Container>
 
-        <Container>
+        <Container className="semester-containers2">
+        {this.state.columnOrder.map((columnId)=>{
+            //console.log("columnId",columnId)
+            let theIdNum = columnId.match(/\d/g);
+            theIdNum = parseInt(theIdNum.join(""));
+            
+            //console.log("theIdNum",theIdNum);
+            const column = this.state.columns[columnId];
+            //console.log("column",column)
+
+            if(theIdNum > 6){
+              const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
+              return <Column  key={column.id} column={column} tasks={tasks}/>
+            }else{
+              return;
+            }
+            
+          })}
+
+        </Container>
+
+        <Container className="btns-container">
         <InsertModal></InsertModal>
         <DeleteModal></DeleteModal>
         <UpdateModal></UpdateModal>
        
         </Container>
       
+
+
+
+       
+
+      
       </DragDropContext>
+      
+      
 
      
       </div>

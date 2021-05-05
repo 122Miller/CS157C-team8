@@ -1,0 +1,68 @@
+.semester-containers1 {
+  background-color: gray;
+}
+
+.course-containers1 {
+  background-color: rgb(230, 205, 173);
+}
+
+.semester-containers2 {
+  background-color: rgb(161, 94, 94);
+}
+
+.course-containers2 {
+  background-color: rgb(173, 230, 206);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1.5fr 1.5fr;
+  height: 100vh;
+}
+
+.title-div {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.btns-container {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 1em;
+}
+
+.course-containers1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 1em;
+}
+
+.course-containers2 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 1em;
+}
+
+.semester-containers1 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 1em;
+}
+
+.semester-containers2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 1em;
+}
