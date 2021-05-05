@@ -3,6 +3,8 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
+import Button from '@material-ui/core/Button';
+
  
 export default  class InsertModal extends React.Component{ 
     constructor(props){
@@ -105,7 +107,7 @@ export default  class InsertModal extends React.Component{
     render(){
         return(
             <Popup
-            trigger={<button className="button"> Insert a new Course </button>}
+            trigger={<Button  variant="contained" color="primary"> Insert a new Course </Button>}
             modal
             nested
           >
@@ -121,33 +123,37 @@ export default  class InsertModal extends React.Component{
                             <label>Course Name</label>
                             <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
                         </div>
+                        <br/>
                         <div>
                             <label>Title</label>
                             <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
                         </div>
+                        <br/>
                         <div>
                             <label>Description</label>
-                            <textarea value ={this.state.description} onChange={this.handleDesciptionChange}></textarea>
+                            <textarea  rows="4" cols = "50" value ={this.state.description} onChange={this.handleDesciptionChange}></textarea>
                         </div>
+                        <br/>
                         <div>
                             <label>Prerequisite</label>
                             <input type="text" value={this.state.prerequisite} onChange={this.handlePrerequisitementChange}/>
                         </div>
-
+                        <br/>
                         <div>
                             <label>Url of the class</label>
                             <input type="text" value={this.state.url} onChange={this.handleUrlChange}/>
                         </div>
-
+                        <br/>
                         <div>
                             <label>Department</label>
                             <input type="text" value={this.state.dept_name} onChange={this.handleDepartmentChange}/>
                         </div>
+                        <br/>
                         <div>
                             <label>Credit</label>
                             <input type="text" value={this.state.credit} onChange={this.handleCreditChange}/>
                         </div>
-
+                        <br/>
 
 
                         <div>
@@ -157,6 +163,7 @@ export default  class InsertModal extends React.Component{
                                 <option value="deep-course">Deep Course</option>
                             </select>
                         </div>
+                        <br/>
             
                         <button className="button" onClick={this.onSubmitClick}> Submit </button>
                         <button

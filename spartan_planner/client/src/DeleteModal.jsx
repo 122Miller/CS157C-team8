@@ -3,6 +3,7 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
+import Button from '@material-ui/core/Button';
  
 export default  class InsertModal extends React.Component{ 
     constructor(props){
@@ -44,7 +45,7 @@ export default  class InsertModal extends React.Component{
     render(){
         return(
             <Popup
-            trigger={<button className="button"> Delete a Course </button>}
+            trigger={<Button  variant="outlined" color="secondary"> Delete a Course </Button>}
             modal
             nested
           >
@@ -60,6 +61,7 @@ export default  class InsertModal extends React.Component{
                             <label>Course Name</label>
                             <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
                         </div>
+                        <br/>
                         
             
                         <button className="button"> Delete </button>
