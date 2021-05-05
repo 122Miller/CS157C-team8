@@ -10,6 +10,8 @@ const Container = styled.div`
     width: 350px;
     display: flex;
     flex-direction: column
+    
+  
 `;
 
 const Title = styled.h3`
@@ -19,8 +21,9 @@ const TaskList = styled.div`
     padding: 8px;
     transition: background-color 0.2 ease;
     background-color: ${props=> (props.isDraggingOver? 'skyblue': 'white')};
-    overflow-y: scroll;
     height:300px;
+    overflow-y: scroll;
+
 `;
 
 

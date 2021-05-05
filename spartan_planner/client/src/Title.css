@@ -1,0 +1,16 @@
+/*  src/Title.css  */
+.Title {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 2em;
+    font-family: Impact fantasy;
+    font-size:large;
+  }
+
+  .Logo {
+    background-image: url(./header-img.png);
+  }
