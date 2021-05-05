@@ -24,12 +24,13 @@ const Handle = styled.div`
 `
 
 
+
+
 export default class Task extends React.Component{
     constructor(props){
         super(props)
-        
-        //this.state = props
-        //console.log("from task class",props)
+    
+       
         //this.onClickHandler = this.onClickHandler.bind(this)
     
     }
