@@ -4,6 +4,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
  
 export default  class InsertModal extends React.Component{ 
     constructor(props){
@@ -58,8 +59,19 @@ export default  class InsertModal extends React.Component{
                 <div className="content">
                     <form onSubmit={this.onDeleteClick}>
                         <div>
-                            <label>Course Name</label>
-                            <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
+                            
+                            <TextField
+                            value={this.state.course} onChange={this.handleCourseNameChange}
+                            id="filled-full-width"
+                            label="Course you want to delete"
+                            style={{ margin: 5 , width: "300px"}}
+                            placeholder="CS123"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
                         

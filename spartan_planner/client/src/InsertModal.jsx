@@ -4,6 +4,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
  
 export default  class InsertModal extends React.Component{ 
@@ -40,6 +41,7 @@ export default  class InsertModal extends React.Component{
     }
 
     handleDesciptionChange = (event) =>{
+        //console.log(event.target.value)
         this.setState({
             description: event.target.value
         })
@@ -107,12 +109,13 @@ export default  class InsertModal extends React.Component{
     render(){
         return(
             <Popup
+           
             trigger={<Button  variant="contained" color="primary"> Insert a new Course </Button>}
             modal
             nested
           >
             {close => (
-              <div className="modal">
+              <div className="modal" >
                 <button className="close" onClick={close}>
                   &times;
                 </button>
@@ -120,44 +123,132 @@ export default  class InsertModal extends React.Component{
                 <div className="content">
                     <form>
                         <div>
-                            <label>Course Name</label>
-                            <input type="text" value={this.state.course} onChange={this.handleCourseNameChange}/>
+                    
+                            <TextField
+                            value={this.state.course}
+                            onChange={this.handleCourseNameChange}
+                            id="filled-full-width"
+                            label="Course Name"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="CS157C"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
                         <div>
-                            <label>Title</label>
-                            <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
+                            
+                            <TextField
+                             value={this.state.title} 
+                             onChange={this.handleTitleChange}
+                            id="filled-full-width"
+                            label="Title"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="NoSQL"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
                         <div>
-                            <label>Description</label>
-                            <textarea  rows="4" cols = "50" value ={this.state.description} onChange={this.handleDesciptionChange}></textarea>
+                            
+                            <TextField
+                            value ={this.state.description}
+                            onChange={this.handleDesciptionChange}
+                            id="filled-full-width"
+                            label="Description"
+                            style={{ margin: 3 , width: "650px"}}
+                            placeholder="This course is...."
+                            //helperText="Full width!"
+                            multiline
+                            rowsMax={3}
+                            
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>
                         </div>
                         <br/>
                         <div>
-                            <label>Prerequisite</label>
-                            <input type="text" value={this.state.prerequisite} onChange={this.handlePrerequisitementChange}/>
+         
+                            <TextField
+                            value={this.state.prerequisite} 
+                            onChange={this.handlePrerequisitementChange}
+                            id="filled-full-width"
+                            label="Prerequisite"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="CS146,CS157a"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                            
                         </div>
                         <br/>
                         <div>
-                            <label>Url of the class</label>
-                            <input type="text" value={this.state.url} onChange={this.handleUrlChange}/>
+                         
+                            <TextField
+                            value={this.state.url} 
+                            onChange={this.handleUrlChange}
+                            id="filled-full-width"
+                            label="Url"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="https://www.....sjsu"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
                         <div>
-                            <label>Department</label>
-                            <input type="text" value={this.state.dept_name} onChange={this.handleDepartmentChange}/>
+                   
+                            <TextField
+                            value={this.state.dept_name} 
+                            onChange={this.handleDepartmentChange}
+                            id="filled-full-width"
+                            label="Department"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="CS"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
                         <div>
-                            <label>Credit</label>
-                            <input type="text" value={this.state.credit} onChange={this.handleCreditChange}/>
+                            
+                            <TextField
+                            value={this.state.credit} onChange={this.handleCreditChange}
+                            id="filled-full-width"
+                            label="Credit"
+                            style={{ margin: 3 , width: "300px"}}
+                            placeholder="3"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
                         <br/>
 
 
                         <div>
-                            <select  value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select  style={{margin:3}} value={this.state.category} onChange={this.handleCategoryChange}>
                                 <option value="requirement">Requirement</option>
                                 <option value="elective">Elective</option>
                                 <option value="deep-course">Deep Course</option>
