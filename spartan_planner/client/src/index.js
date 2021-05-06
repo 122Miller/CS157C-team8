@@ -316,16 +316,28 @@ class App extends React.Component{
 
     let currentColumn = null
     let currentColumnIndex = null
+
+    let prevColumn = null
+    let prevColumnIndex = null
     columnValues.map( (element, index) => {
       if(element.id === finish.id){
         currentColumn = element
         currentColumnIndex = index
       }
+      if(element.id === start.id){
+        prevColumn = element
+        prevColumnIndex = index
+      }
     })
 
     console.log("currentColumn", currentColumn)
     console.log("currentColumnIndex", currentColumnIndex)
+    console.log("prevColumn", prevColumn)
+    console.log("prevColumnIndex", prevColumnIndex)
 
+
+
+    // aggregate planned classes
     const takenClasses = []
     var i;
     for(i = 4; i < currentColumnIndex; i++){
@@ -333,12 +345,13 @@ class App extends React.Component{
     }
     console.log("takenClasses", takenClasses)
 
+
+    // alert user if prereq not satisfied
     for(i = 0; i < course.prerequisite.length; i++){
       if(takenClasses.includes(course.prerequisite[i])){
-        //console.log("satisfied")
       }
       else{
-        alert(`prereq not satisfied ${course.prerequisite[i]}` )
+        alert(` ${course.id} needs ${course.prerequisite[i]} as a prerequisite` )
         return;
       }
     }
@@ -348,48 +361,50 @@ class App extends React.Component{
     console.log("After OnDragEnd destination index", destination.index)
 
     const newStateColumnValues = Object.values(newState.columns)
-    console.log("new state column",newStateColumnValues[currentColumnIndex])
     var newUnits = 0
-    console.log("column task ids length",newStateColumnValues[currentColumnIndex].taskIds.length)
-
     var taskID = null
-    for(i = 0; i < newStateColumnValues[currentColumnIndex].taskIds.length; i++){
-      taskID = newStateColumnValues[currentColumnIndex].taskIds[i]
-      taskValues.map( (item, index) =>{
-        if(item.id === taskID){
-          console.log("item units", item)
-          newUnits += item.credit
-          //console.log(course.prerequisite)
-        }
+    var j;
+
+
+    // Check each semester container and calculate total units
+    for(i = 4; i < 8; i++){
+      if(newStateColumnValues[i].taskIds.length === 0){
+        newStateColumnValues[i].units = 0
+      }
+      else{
+        newUnits = 0;
+        for(j = 0; j < newStateColumnValues[i].taskIds.length; j++){
+          taskID = newStateColumnValues[currentColumnIndex].taskIds[j]
+          taskValues.map( (item, index) =>{
+            if(item.id === taskID){
+              newUnits += item.credit
+            }
+        })
+       }
+      }
+    }
+
+    var prev_taskID = null
+
+    if(prevColumnIndex >= 4){
+      var prevCol_newUnits = 0
+      for(j = 0; j < newStateColumnValues[prevColumnIndex].taskIds.length; j++){
+        prev_taskID = newStateColumnValues[prevColumnIndex].taskIds[j]
+        taskValues.map( (item, index) =>{
+          if(item.id === prev_taskID){
+            prevCol_newUnits += item.credit
+          }
       })
+     }
+     console.log("prevCol new units", prevCol_newUnits)
+     newStateColumnValues[prevColumnIndex].units = prevCol_newUnits
     }
 
     console.log("new units", newUnits)
-
-    //newStateColumnValues[currentColumnIndex].taskIds.forEach( task => takenClasses.push(task))
-    //newStateColumnValues[currentColumnIndex].units = units + course.units
-
-
     console.log("new state", newState)
     newStateColumnValues[currentColumnIndex].units = newUnits
     console.log("check updated units", newStateColumnValues[currentColumnIndex])
-    //newState.columns = newStateColumnValues
 
-    // const newState = {
-    //   ...this.state,
-    //   columns:{
-    //     ...this.state.columns,
-    //     [newStart.id]:newStart,
-    //     [newFinish.id]: newFinish,
-        
-    //   }
-
-    // newState = {
-    //   ...newState,
-    //   columns:{
-    //     ...newStateColumnValues
-    //   }
-    // }
 
     console.log("newnewState", newState)
 
