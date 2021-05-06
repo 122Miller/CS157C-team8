@@ -32,7 +32,7 @@ const Units = styled.h3`
 `;
 
 
-export default class Column extends React.Component{
+export default class SemesterColumn extends React.Component{
 
     constructor(props){
         super(props)
@@ -60,7 +60,7 @@ export default class Column extends React.Component{
                     </TaskList>
                 )}
            </Droppable>
-           <Units></Units>
+           <Units>Total Units: {this.props.column.units}</Units>
        </Container>
         )
        

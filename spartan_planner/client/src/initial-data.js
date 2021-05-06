@@ -33,22 +33,26 @@ const initialData ={
          'column-5':{
             id: 'column-5',
             title:'Fall Semester',
-            taskIds:[] 
+            taskIds:[],
+            units: 0
          },
          'column-6':{
             id: 'column-6',
             title:'Spring Semester',
-            taskIds:[] 
+            taskIds:[],
+            units: 0
          },
          'column-7':{
             id: 'column-7',
             title:'Fall Semester',
-            taskIds:[] 
+            taskIds:[],
+            units: 0
          },
          'column-8':{
             id: 'column-8',
             title:'Spring Semester',
-            taskIds:[] 
+            taskIds:[],
+            units: 0
          },
        
     },

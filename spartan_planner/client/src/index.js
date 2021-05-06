@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import initialData from './initial-data'
 import Column from './column'
+import SemesterColumn from './semesterColumn'
 import InsertModal from './InsertModal'
 import DeleteModal from './DeleteModal'
 import UpdateModal from './UpdateModal'
@@ -290,7 +291,7 @@ class App extends React.Component{
       taskIds:finishTaskIds
     }
 
-    const newState = {
+    let newState = {
       ...this.state,
       columns:{
         ...this.state.columns,
@@ -333,7 +334,7 @@ class App extends React.Component{
 
     for(i = 0; i < course.prerequisite.length; i++){
       if(takenClasses.includes(course.prerequisite[i])){
-        console.log("satisfied")
+        //console.log("satisfied")
       }
       else{
         alert(`prereq not satisfied ${course.prerequisite[i]}` )
@@ -341,11 +342,55 @@ class App extends React.Component{
       }
     }
 
-
     console.log("After onDragEnd", newState)
     console.log("After OnDragEnd source index", source.index)
     console.log("After OnDragEnd destination index", destination.index)
 
+    const newStateColumnValues = Object.values(newState.columns)
+    console.log("new state column",newStateColumnValues[currentColumnIndex])
+    var newUnits = 0
+    console.log("column task ids length",newStateColumnValues[currentColumnIndex].taskIds.length)
+
+    var taskID = null
+    for(i = 0; i < newStateColumnValues[currentColumnIndex].taskIds.length; i++){
+      taskID = newStateColumnValues[currentColumnIndex].taskIds[i]
+      taskValues.map( (item, index) =>{
+        if(item.id === taskID){
+          console.log("item units", item)
+          newUnits += item.credit
+          //console.log(course.prerequisite)
+        }
+      })
+    }
+
+    console.log("new units", newUnits)
+
+    //newStateColumnValues[currentColumnIndex].taskIds.forEach( task => takenClasses.push(task))
+    //newStateColumnValues[currentColumnIndex].units = units + course.units
+
+
+    console.log("new state", newState)
+    newStateColumnValues[currentColumnIndex].units = newUnits
+    console.log("check updated units", newStateColumnValues[currentColumnIndex])
+    //newState.columns = newStateColumnValues
+
+    // const newState = {
+    //   ...this.state,
+    //   columns:{
+    //     ...this.state.columns,
+    //     [newStart.id]:newStart,
+    //     [newFinish.id]: newFinish,
+        
+    //   }
+
+    // newState = {
+    //   ...newState,
+    //   columns:{
+    //     ...newStateColumnValues
+    //   }
+    // }
+
+    console.log("newnewState", newState)
 
     this.setState(newState)
   }
@@ -414,7 +459,7 @@ class App extends React.Component{
 
             if(theIdNum > 4 && theIdNum <=6){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-              return <Column  key={column.id} column={column} tasks={tasks}/>
+              return <SemesterColumn  key={column.id} column={column} tasks={tasks}/>
             }else{
               return;
             }
@@ -435,7 +480,7 @@ class App extends React.Component{
 
             if(theIdNum > 6){
               const tasks = column.taskIds.map(taskId => this.state.tasks[taskId])
-              return <Column  key={column.id} column={column} tasks={tasks}/>
+              return <SemesterColumn  key={column.id} column={column} tasks={tasks}/>
             }else{
               return;
             }

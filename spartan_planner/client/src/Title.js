@@ -9,8 +9,8 @@ function Title() {
       <img
       src={logo}
       className='Logo'
-      height="100px" 
-      witdh="100px"
+      height="130px" 
+      witdh="130px"
       />
 
   )
