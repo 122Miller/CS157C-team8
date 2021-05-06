@@ -3,6 +3,8 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
  
 export default  class UpdateModal extends React.Component{ 
     constructor(props){
@@ -101,7 +103,7 @@ export default  class UpdateModal extends React.Component{
     render(){
         return(
             <Popup
-            trigger={<button className="button"> Update a current course </button>}
+            trigger={<Button variant="contained"> Update a current course </Button>}
             modal
             nested
           >
@@ -114,44 +116,156 @@ export default  class UpdateModal extends React.Component{
                 <div className="content">
                     <form>
                         <div>
-                            <label>Course name you want to update</label>
-                            <input type="text" value={this.state.oldCourse} onChange={this.handleOldCourseNameChange}/>
+           
+                            <TextField
+                            value={this.state.oldCourse} 
+                            onChange={this.handleOldCourseNameChange}
+                            id="filled-full-width"
+                            label="Course you want to change"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="CS123"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                           
                         </div>
+                        <br/>
                         <div>
-                            <label>New Course Name</label>
-                            <input type="text" value={this.state.newCourse} onChange={this.handleNewCourseNameChange}/>
+                           
+                            <TextField
+                            value={this.state.newCourse} onChange={this.handleNewCourseNameChange}
+                            id="filled-full-width"
+                            label="New Course Name"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="CS321"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
+                        <br/>
                         <div>
-                            <label>Title</label>
-                            <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
+                            
+                            <TextField
+                             value={this.state.title} 
+                             onChange={this.handleTitleChange}
+                            id="filled-full-width"
+                            label="Title"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="NoSQL"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
                         </div>
+                        <br/>
                         <div>
-                            <label>Description</label>
-                            <textarea value ={this.state.description} onChange={this.handleDesciptionChange}></textarea>
+                            
+                            <TextField
+                            value ={this.state.description}
+                            onChange={this.handleDesciptionChange}
+                            id="filled-full-width"
+                            label="Description"
+                            style={{ margin: 1 , width: "650px"}}
+                            placeholder="This course is...."
+                            //helperText="Full width!"
+                            multiline
+                            rowsMax={2}
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>
                         </div>
+                        <br/>
                         <div>
-                            <label>Prerequisite</label>
-                            <input type="text" value={this.state.prerequisite} onChange={this.handlePrerequisitementChange}/>
+         
+                            <TextField
+                            value={this.state.prerequisite} 
+                            onChange={this.handlePrerequisitementChange}
+                            id="filled-full-width"
+                            label="Prerequisite"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="CS146,CS157a"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                            
                         </div>
+                        <br/>
+                        <div>
+                         
+                            <TextField
+                            value={this.state.url} 
+                            onChange={this.handleUrlChange}
+                            id="filled-full-width"
+                            label="Url"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="https://www.....sjsu"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                        </div>
+                        <br/>
+                        <div>
+                   
+                            <TextField
+                            value={this.state.dept_name} 
+                            onChange={this.handleDepartmentChange}
+                            id="filled-full-width"
+                            label="Department"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="CS"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                        </div>
+                        <br/>
+                        <div>
+                            
+                            <TextField
+                            value={this.state.credit} onChange={this.handleCreditChange}
+                            id="filled-full-width"
+                            label="Credit"
+                            style={{ margin: 1 , width: "300px"}}
+                            placeholder="3"
+                            margin="normal"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="outlined"
+                            ></TextField>   
+                        </div>
+                        <br/>
+
 
                         <div>
-                            <label>Department</label>
-                            <input type="text" value={this.state.dept_name} onChange={this.handleDepartmentChange}/>
-                        </div>
-                        <div>
-                            <label>Credit</label>
-                            <input type="text" value={this.state.credit} onChange={this.handleCreditChange}/>
-                        </div>
-
-                        <div>
-                            <select  value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select  style={{margin:1}} value={this.state.category} onChange={this.handleCategoryChange}>
                                 <option value="requirement">Requirement</option>
                                 <option value="elective">Elective</option>
                                 <option value="deep-course">Deep Course</option>
                             </select>
                         </div>
+                        <br/>
             
-                        <button className="button" onClick={this.onSubmitClick}> Update </button>
+                        <button className="button"  onClick={this.onSubmitClick}> Update </button>
                         <button
                             className="button"
                             onClick={() => {

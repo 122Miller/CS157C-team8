@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import {DragDropContext} from 'react-beautiful-dnd'
 import axios from 'axios'
 import Title from './Title'
+import Button from '@material-ui/core/Button';
 
 import './index.css'
 
@@ -491,8 +492,8 @@ class App extends React.Component{
 
         <Container className="btns-container">
         <InsertModal></InsertModal>
-        <DeleteModal></DeleteModal>
         <UpdateModal></UpdateModal>
+        <DeleteModal></DeleteModal>
        
         </Container>
       
