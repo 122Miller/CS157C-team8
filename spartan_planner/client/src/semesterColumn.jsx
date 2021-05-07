@@ -10,8 +10,6 @@ const Container = styled.div`
     width: 320px;
     display: flex;
     flex-direction: column
-    
-  
 `;
 
 const Title = styled.h3`
@@ -22,7 +20,6 @@ const TaskList = styled.div`
     transition: background-color 0.2 ease;
     background-color: ${props=> (props.isDraggingOver? 'skyblue': 'white')};
     height:300px;
-    overflow-y: scroll;
 
 `;
 

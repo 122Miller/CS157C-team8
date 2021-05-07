@@ -3,17 +3,18 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './InsertModal.css'
- 
+
+
+
+
+
 export default  class InfoModal extends React.Component{ 
     constructor(props){
         super(props)
         //this.state =props
         //console.log("from infoModal", props)
     }
-
-
-
-
+    
 
     render(){
         return(

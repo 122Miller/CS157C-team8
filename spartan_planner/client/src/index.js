@@ -110,25 +110,29 @@ class App extends React.Component{
       const columnObj1 = {
         "id":"column-1",
         "title":"Requirements",
-        "taskIds" : requiredCourseNames
+        "taskIds" : requiredCourseNames,
+        "subtitle" : "(Complete all)"
       }
 
       const columnObj2 = {
         "id":"column-2",
-        "title":"Selectives",
-        "taskIds" : selectiveCourseNames
+        "title":"CS Electives",
+        "taskIds" : selectiveCourseNames,
+        "subtitle" : "(Complete 17 units)"
       }
 
       const columnObj3 = {
         "id":"column-3",
         "title":"Deep Course",
-        "taskIds" : deepCourseNames
+        "taskIds" : deepCourseNames,
+        "subtitle" : "(Pick one)"
       }
 
       const columnObj4 = {
         "id":"column-4",
         "title":"Upper Division G.E.",
-        "taskIds" : GECourseNames
+        "taskIds" : GECourseNames,
+        "subtitle" : "(Complete all)"
       }
 
       
@@ -357,8 +361,8 @@ class App extends React.Component{
     }
 
     console.log("After onDragEnd", newState)
-    console.log("After OnDragEnd source index", source.index)
-    console.log("After OnDragEnd destination index", destination.index)
+   // console.log("After OnDragEnd source index", source.index)
+    //console.log("After OnDragEnd destination index", destination.index)
 
     const newStateColumnValues = Object.values(newState.columns)
     var newUnits = 0
@@ -384,8 +388,9 @@ class App extends React.Component{
       }
     }
 
-    var prev_taskID = null
 
+    // Update the semester column's units with an outgoing course
+    var prev_taskID = null
     if(prevColumnIndex >= 4){
       var prevCol_newUnits = 0
       for(j = 0; j < newStateColumnValues[prevColumnIndex].taskIds.length; j++){
@@ -396,17 +401,17 @@ class App extends React.Component{
           }
       })
      }
-     console.log("prevCol new units", prevCol_newUnits)
+    // console.log("prevCol new units", prevCol_newUnits)
      newStateColumnValues[prevColumnIndex].units = prevCol_newUnits
     }
 
-    console.log("new units", newUnits)
-    console.log("new state", newState)
+   // console.log("new units", newUnits)
+   // console.log("new state", newState)
     newStateColumnValues[currentColumnIndex].units = newUnits
-    console.log("check updated units", newStateColumnValues[currentColumnIndex])
+    //console.log("check updated units", newStateColumnValues[currentColumnIndex])
 
 
-    console.log("newnewState", newState)
+    //console.log("newnewState", newState)
 
     this.setState(newState)
   }

@@ -31,6 +31,17 @@ const Units = styled.h3`
 
 `;
 
+const Subtitle = styled.div`
+    padding: 8px;
+    position: relative;
+    left: 25px;
+    bottom: 30px;
+    font-family: "sans-serif;";
+    font-size: medium;
+    font-weight: bold;
+`;
+
+
 
 export default class Column extends React.Component{
 
@@ -43,6 +54,7 @@ export default class Column extends React.Component{
         return(
             <Container>
            <Title>{this.props.column.title}</Title>
+           <Subtitle>{this.props.column.subtitle}</Subtitle>
            <Droppable 
                 droppableId={this.props.column.id} 
                 //type={"Task"}
